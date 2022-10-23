@@ -1,5 +1,23 @@
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+:root{
+  --darkStuff: #231010 ;
+  --lightStuff: #D9EAD3 ;
+}
+
+header{
+  background-color: var(--darkStuff);
+}
+
+nav{
+  color: var(--lightStuff);
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .no-button {
@@ -17,11 +35,6 @@ header, .project:not(:last-child) {
   text-decoration: underline;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-}
 
 .hide{
   display: none;
