@@ -1,3 +1,6 @@
+const loginForm = document.getElementById('loginForm');
+const signupForm = document.getElementById('signupForm');
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -43,6 +46,16 @@ const signupFormHandler = async (event) => {
   }
 };
 
+function switchToSignUp() {
+  loginForm.setAttribute('class', 'hide');
+  signupForm.removeAttribute('class', 'hide');
+}
+
+function switchToLogin() {
+  signupForm.setAttribute('class', 'hide');
+  loginForm.removeAttribute('class', 'hide');
+}
+
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
@@ -50,3 +63,11 @@ document
 document
   .querySelector('.signup-form')
   .addEventListener('submit', signupFormHandler);
+
+document.querySelector('.switchToSU').addEventListener('click', function () {
+  switchToSignUp();
+});
+
+document.querySelector('.switchToLI').addEventListener('click', function () {
+  switchToLogin();
+});
