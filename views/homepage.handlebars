@@ -1,13 +1,13 @@
 {{#each comments as |comment| }}
-<div class="row mb-4 comment">
-  <div class="col-md-5">
-    <h2>
+<div class="card mb-4">
+  <div class="row title">
+    <h2 class="titleText">
       <a href="/comment/{{comment.id}}">{{comment.title}}</a>
     </h2>
-      <p>Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+      <p class="userText text-center">Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
   </div>
-  <div class="col-md-7">
-    <p>
+  <div class="comment">
+    <p class="commentText">
       {{comment.comment}}
     </p>
   </div>

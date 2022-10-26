@@ -5,6 +5,7 @@
 
 header{
   background-color: var(--darkStuff);
+  padding: 25px;
 }
 
 nav{
@@ -14,6 +15,7 @@ nav{
 a{
   text-decoration: none;
   color: inherit;
+  margin: 15px;
 }
 a:hover {
   text-decoration: none;
@@ -25,17 +27,58 @@ a:hover {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #1b89bc;
+  color: inherit;
   text-decoration: none;
   font-size: 100%;
 }
 
 .no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
+  text-decoration: none;
 }
-
 
 .hide{
   display: none;
+}
+
+#techBlogTitle{
+  background-color: var(--lightStuff);
+  color: var(--darkStuff);
+  width: max-content;
+  border-radius: 7px;
+  padding: 1px;
+}
+
+body{
+  background-color: var(--lightStuff);
+}
+
+.titleText{
+  color:var(--lightStuff);
+}
+
+.title{
+background-color: var(--darkStuff);
+padding-left: 15px;
+justify-content: space-between;
+}
+
+.commentText{
+  color: var(--darkStuff);
+}
+
+.comment{
+background-color: var(--lightStuff);
+width: 100%;
+padding: 15px;
+
+}
+
+.userText{
+  color: var(--lightStuff);
+  font-size: 14px;
+  margin: 0 10px 0 0;
+}
+
+.card{
+  border: 20px solid var(--darkStuff);
 }
