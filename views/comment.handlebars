@@ -9,15 +9,19 @@
       {{format_date date_created}}</p>
   </div>
   <div class='comment'>
-    <p class='commentText'>
+    <textarea id="{{id}}" value="{{comment}}" placeholder="{{comment}}" class='commentText'>
       {{comment}}
-    </p>
+    </textarea>
   </div>
-  <div class='deleteBtn'>
+  <div>
     <button
       class='btn deleteBtn'
-      data-id='{{comment.id}}'
+      data-id='{{id}}'
     >DELETE</button>
+    <button
+      class='btn updateBtn'
+      data-id='{{id}}'
+    >update</button>
   </div>
 </div>
 
