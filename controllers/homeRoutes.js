@@ -39,9 +39,11 @@ router.get('/comment/:id', async (req, res) => {
     });
 
     const comment = commentData.get({ plain: true });
+    const isOP = (user_id === comment.user_id)
 
     res.render('comment', {
       ...comment,
+      isOP,
       logged_in: req.session.logged_in
     });
   } catch (err) {

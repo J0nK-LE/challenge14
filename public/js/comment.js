@@ -25,12 +25,14 @@ const delButtonHandler = async (event) => {
       console.log(id,comment_data)
       const response = await fetch(`/api/comment/${id}`, {
         method: 'POST',
-        body: comment_data 
-        // JSON.stringify({comment:comment_data})
+        body: JSON.stringify({comment:comment_data}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
   
       if (response.ok) {
-        //document.location.replace('/profile');
+        document.location.replace('/profile');
       } else {
         alert('Failed to update comment');
       }
