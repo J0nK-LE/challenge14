@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment, User } = require('../models');
+const { Comment, User, Child } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -35,15 +35,16 @@ router.get('/comment/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Child
+        },
       ],
     });
 
     const comment = commentData.get({ plain: true });
-    const isOP = (user_id === comment.user_id)
 
     res.render('comment', {
       ...comment,
-      isOP,
       logged_in: req.session.logged_in
     });
   } catch (err) {
