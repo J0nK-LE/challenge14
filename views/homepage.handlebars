@@ -1,15 +1,42 @@
-{{#each comments as |comment| }}
-<div class="card mb-4">
-  <div class="row title">
-    <h2 class="titleText">
-      <a href="/comment/{{comment.id}}">{{comment.title}}</a>
-    </h2>
-      <p class="userText text-center">Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+{{#if logged_in}}
+{{#each comments as |comment|}}
+  <div class='card mb-4'>
+    <div class='row title'>
+
+        <h2 class='titleText'>
+          <a href='/comment/{{comment.id}}'>{{comment.title}}</a>
+        </h2>
+      <p class='userText text-center'>Created by
+        {{comment.user.name}}
+        on
+        {{format_date comment.date_created}}</p>
+    </div>
+    <div class='comment'>
+      <p class='commentText'>
+        {{comment.comment}}
+      </p>
+    </div>
   </div>
-  <div class="comment">
-    <p class="commentText">
-      {{comment.comment}}
-    </p>
-  </div>
-</div>
 {{/each}}
+{{else}}
+{{#each comments as |comment|}}
+  <div class='card mb-4'>
+    <div class='row title'>
+
+        <h2 class='titleText'>
+          <a href='/login'>{{comment.title}}</a>
+        </h2>
+      <p class='userText text-center'>Created by
+        {{comment.user.name}}
+        on
+        {{format_date comment.date_created}}</p>
+    </div>
+    <div class='comment'>
+      <p class='commentText'>
+        {{comment.comment}}
+      </p>
+    </div>
+  </div>
+{{/each}}
+
+{{/if}}

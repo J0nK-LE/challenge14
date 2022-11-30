@@ -16,7 +16,7 @@ Comment.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-Child.belongsTo(Comment, {
+Child.belongsTo(User, {
   foreignKey: 'user_id',
 });
 

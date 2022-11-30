@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { Comment, User, Child } = require('../models');
 const withAuth = require('../utils/auth');
+const { Op } = require("sequelize");
+
 
 router.get('/', async (req, res) => {
   try {
@@ -28,26 +30,67 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/comment/:id', async (req, res) => {
+  console.log("comment",req.session)
   try {
-    const commentData = await Comment.findByPk(req.params.id, {
+    const commentData1 = await Comment.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['name','id'],
+          where: {
+            id: req.session.user_id
+          }
         },
         {
           model: Child
         },
       ],
+     
     });
+    const commentData2 = await Comment.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name','id'],
+          where: {
+            id:{[Op.ne]: req.session.user_id}
+          }
+        },
+        {
+          model: Child
+        },
+      ],
+     
+    });
+   
+    
+    console.log(commentData1, commentData2)
+    let comment1, comment2
+    if(commentData1){
 
-    const comment = commentData.get({ plain: true });
+       comment1 = commentData1.get({ plain: true }) ;
+    }else{
+       comment1 = []
+    }
+    if(commentData2){
+
+       comment2 = commentData2.get({ plain: true })
+    }else{
+      comment2 = []
+    }
+   
+    console.log(comment1,comment2)
+
+    // const children1 = commentData1.map((child1) => child1.get({ plain: true }));
+    // const children2 = commentData2.map((child2) => child2.get({ plain: true }));
 
     res.render('comment', {
-      ...comment,
-      logged_in: req.session.logged_in
+      comment1, comment2,
+      logged_in: req.session.logged_in,
+     
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
