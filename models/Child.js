@@ -26,9 +26,6 @@ Child.init(
         key: 'id',
       },
     },
-    user_name: {
-      type: DataTypes.STRING,
-    },
     comment_id: {
         type: DataTypes.INTEGER,
         references: {

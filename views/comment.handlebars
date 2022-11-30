@@ -69,16 +69,39 @@
     </p>
   </div>
   <div class='flex-column'>
+    <button class='hide btn deleteBtn' data-id='{{comment1.id}}'>DELETE</button>
+      <button
+        class='hide btn updateBtn mt-3'
+        data-id='{{comment1.id}}'
+      >UPDATE</button>
     <button
-      class='btn commentBtn mt-3'
+      class='btn newChildBtn mt-3'
       data-id='{{comment2.id}}'
+      type="button"
     >COMMENT</button>
+    <div id="addComment" class='hide row mt-4'>
+  <div class='col-md-6 card'>
+      <form class='form new-child-form'>
+      <div class='form-group'>
+        <label for='child-child'>Content:</label>
+        <textarea
+          class='form-input'
+          id='child-child'
+          name='child-child'
+        ></textarea>
+      </div>
+      <div class='form-group'>
+        <button type='submit' class='btn btn-primary'>Create</button>
+      </div>
+    </form>
+  </div>
+</div>
   </div>
   {{#each comment2.children as |child|}}
  <div>
   <div class='row title'>
     <p class='userText text-center'>Created by
-      {{child.user_name}}
+      {{comment2.user.name}}
       on
       {{format_date child.date_created}}</p>
   </div>

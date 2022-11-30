@@ -37,6 +37,28 @@ const updateButtonHandler = async (event) => {
     }
   }
 };
+const newChildHandler = async (event) => {
+  event.preventDefault();
+
+  const child = document.querySelector('#child-child').value.trim();
+
+  if (child) {
+    const response = await fetch(`/api/comment/:id/child`, {
+      method: 'POST',
+      body: JSON.stringify({ child }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.reload()
+      console.log(child);
+    } else {
+      alert('Failed to update comment');
+    }
+  }
+};
 
 document
   .querySelector('.deleteBtn')
@@ -46,6 +68,18 @@ document
   .querySelector('.updateBtn')
   .addEventListener('click', updateButtonHandler);
 
-document
-  .querySelector('.commentBtn')
-  .addEventListener('click', updateButtonHandler);
+
+  function addChildForm() {
+    addComment.removeAttribute('class', 'hide');
+  }
+  function removeChildForm(){
+      addComment.setAttribute('class', 'hide');
+  }
+  
+  document
+    .querySelector('.new-child-form')
+    .addEventListener('submit', newChildHandler);
+  
+    document.querySelector('.newChildBtn').addEventListener('click', function () {
+      addChildForm();
+    });
