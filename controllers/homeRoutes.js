@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const { Comment, User, Child } = require('../models');
 const withAuth = require('../utils/auth');
-const { Op } = require("sequelize");
-
+const { Op } = require('sequelize');
 
 router.get('/', async (req, res) => {
   try {
@@ -20,9 +19,9 @@ router.get('/', async (req, res) => {
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      comments, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      comments,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -30,67 +29,64 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/comment/:id', async (req, res) => {
-  console.log("comment",req.session)
+  console.log('comment', req.session);
   try {
     const commentData1 = await Comment.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name','id'],
+          attributes: ['name', 'id'],
           where: {
-            id: req.session.user_id
-          }
+            id: req.session.user_id,
+          },
         },
         {
-          model: Child
+          model: Child,
+          include: [{ model: User, attributes: ['name', 'id'] }],
         },
       ],
-     
     });
     const commentData2 = await Comment.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name','id'],
+          attributes: ['name', 'id'],
           where: {
-            id:{[Op.ne]: req.session.user_id}
-          }
+            id: { [Op.ne]: req.session.user_id },
+          },
         },
         {
-          model: Child
+          model: Child,
+          include: [{ model: User, attributes: ['name', 'id'] }],
         },
       ],
-     
     });
-   
-    
-    console.log(commentData1, commentData2)
-    let comment1, comment2
-    if(commentData1){
 
-       comment1 = commentData1.get({ plain: true }) ;
-    }else{
-       comment1 = []
+    // console.log(commentData1, commentData2)
+    let comment1, comment2;
+    if (commentData1) {
+      comment1 = commentData1.get({ plain: true });
+    } else {
+      comment1 = [];
     }
-    if(commentData2){
+    if (commentData2) {
+      comment2 = commentData2.get({ plain: true });
+    } else {
+      comment2 = [];
+    }
 
-       comment2 = commentData2.get({ plain: true })
-    }else{
-      comment2 = []
-    }
-   
-    console.log(comment1,comment2)
+    console.log(comment1, comment2);
 
     // const children1 = commentData1.map((child1) => child1.get({ plain: true }));
     // const children2 = commentData2.map((child2) => child2.get({ plain: true }));
 
     res.render('comment', {
-      comment1, comment2,
+      comment1,
+      comment2,
       logged_in: req.session.logged_in,
-     
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -108,7 +104,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     res.render('profile', {
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
     res.status(500).json(err);

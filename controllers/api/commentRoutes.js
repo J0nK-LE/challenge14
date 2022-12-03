@@ -56,12 +56,12 @@ router.post('/:id', withAuth, async (req, res) => {
   }
 });
 router.post('/:id/child', withAuth, async (req, res) => {
- 
+ console.log("comment child",req.body)
   try {
     const newChild = await Child.create({
       ...req.body,
       user_id: req.session.user_id,
-      user_name: req.session.user_name
+      
     });
 
   

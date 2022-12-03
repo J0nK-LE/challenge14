@@ -40,12 +40,14 @@ const updateButtonHandler = async (event) => {
 const newChildHandler = async (event) => {
   event.preventDefault();
 
-  const child = document.querySelector('#child-child').value.trim();
-
-  if (child) {
+  const record = {
+     child : document.querySelector('#child-child').value.trim(),
+     comment_id: event.target.getAttribute("data-id")
+  }
+  if (record) {
     const response = await fetch(`/api/comment/:id/child`, {
       method: 'POST',
-      body: JSON.stringify({ child }),
+      body: JSON.stringify(record),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -53,7 +55,7 @@ const newChildHandler = async (event) => {
 
     if (response.ok) {
       document.location.reload()
-      console.log(child);
+      console.log(record);
     } else {
       alert('Failed to update comment');
     }

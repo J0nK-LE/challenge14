@@ -1,14 +1,14 @@
 [
   {
-    "title": "tech comment 1",
-    "comment": "A mobile app that will send you notifications whenever a concert is playing in your area."
+    "title": "tech blog",
+    "comment": "What makes this a tech blog? I guess we're just encouraged to post about tech?"
  },
   {
-    "title": "tech comment 2",
-    "comment": "A mobile app that will send you notifications whenever a concert is playing in your area."
+    "title": "Making that $$$",
+    "comment": "This site is basically going to be impossible to monetize."
  },
   {
-    "title": "tech comment 3",
-    "comment": "A mobile app that will send you notifications whenever a concert is playing in your area."
+    "title": "React",
+    "comment": "I'm pretty sure React would be better way to go for this type of site..."
  }
 ]

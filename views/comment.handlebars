@@ -33,7 +33,7 @@
  <div>
   <div class='row title'>
     <p class='userText text-center'>Created by
-      {{child.user_name}}
+      {{child.user.name}}
       on
       {{format_date child.date_created}}</p>
   </div>
@@ -81,7 +81,7 @@
     >COMMENT</button>
     <div id="addComment" class='hide row mt-4'>
   <div class='col-md-6 card'>
-      <form class='form new-child-form'>
+      <form  data-id='{{comment2.id}}' class='form new-child-form'>
       <div class='form-group'>
         <label for='child-child'>Content:</label>
         <textarea
@@ -91,7 +91,8 @@
         ></textarea>
       </div>
       <div class='form-group'>
-        <button type='submit' class='btn btn-primary'>Create</button>
+        <button type='submit'
+ class='btn btn-primary'>Create</button> 
       </div>
     </form>
   </div>
@@ -101,7 +102,7 @@
  <div>
   <div class='row title'>
     <p class='userText text-center'>Created by
-      {{comment2.user.name}}
+      {{child.user.name}}
       on
       {{format_date child.date_created}}</p>
   </div>
